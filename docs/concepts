@@ -1,6 +1,6 @@
 # Concepts
 
-This document contains the fundamental concepts required to understand Sparse Autoencoders, Mechanistic Interpretability, and the research carried out in this project.
+This document contains the fundamental concepts involved in the research project.
 
 ---
 
@@ -13,7 +13,7 @@ It consists of two components:
 - Encoder
 - Decoder
 
-The encoder converts the input into a latent representation (or latent code), while the decoder reconstructs the original input from this representation.
+The encoder converts the input into a latent representation (code), while the decoder reconstructs the original input from this representation.
 
 ```
 Input
@@ -43,9 +43,8 @@ During training, the network learns by minimizing the difference between the inp
 
 The latent representation is the internal representation produced by the encoder.
 
-It does not store the raw input, it captures the information the network considers important for reconstructing the original input.
+It captures the information the network considers important for reconstructing the original input.
 
-A good latent representation preserves useful information while ignoring unnecessary details.
 
 ---
 
@@ -55,15 +54,11 @@ Reconstruction loss measures how closely the reconstructed output matches the or
 
 The objective of an autoencoder is to minimize this loss during training.
 
-Common loss functions include Mean Squared Error (MSE) and Binary Cross Entropy (BCE), depending on the type of data.
-
 ---
 
 # Sparse Autoencoder (SAE)
 
 A Sparse Autoencoder is a variation of an autoencoder that encourages only a small number of latent neurons to activate for a given input.
-
-Unlike a standard autoencoder, the goal is not only to reconstruct the input but also to learn sparse and more interpretable internal representations.
 
 Sparse Autoencoders are commonly used in mechanistic interpretability because they can separate information into individual features that are easier to analyse.
 
@@ -75,13 +70,12 @@ A sparsity constraint encourages only a small fraction of latent neurons to beco
 
 Instead of spreading information across many neurons, the network learns to represent an input using only a few active features.
 
-This often produces cleaner and more interpretable representations.
 
 ---
 
 # Expansion Factor
 
-Sparse Autoencoders used for mechanistic interpretability often expand the latent space instead of compressing it.
+Sparse Autoencoders expand the latent space instead of compressing it.
 
 The encoder projects the input into a much larger feature space. Although this space contains many possible features, sparsity constraints ensure that only a small number become active for any input.
 
@@ -91,16 +85,12 @@ The expansion factor determines how much larger the latent space is compared to 
 
 # Representation Learning
 
-Representation learning is the process of automatically learning useful representations directly from data instead of manually designing features.
-
-The representations learned by an autoencoder can often capture meaningful patterns that are useful for other machine learning tasks.
+Representation learning is the process of automatically learning useful representations directly from data.
 
 ---
 
 # Feature
 
-A feature is a meaningful pattern or concept learned by a neural network.
+A feature is a pattern concept learned by a neural network.
 
-Examples of features in a language model may include punctuation, programming syntax, sentiment, or specific semantic concepts.
-
-Sparse Autoencoders attempt to separate these features into individual latent units, making them easier to interpret and study.
+Sparse Autoencoders attempt to separate features into individual latent units.
