@@ -23,3 +23,26 @@ This journal documents my progress throughout this project.
 
 - Learn what representations are.
 - Read the first research paper.
+
+## Day 2
+
+### Objectives
+- Study the fundamentals of autoencoders.
+- Review sparse autoencoder architecture.
+- Read foundational literature on sparse coding.
+
+### Completed
+- Documented concepts:
+  - Autoencoder
+  - Sparse Autoencoder
+  - Expansion Factor
+  - Sparsity Constraint
+- Reviewed applications of autoencoders in denoising and anomaly detection.
+- Read:
+  - Towards Monosemanticity (Anthropic)
+  - Olshausen & Field (1996)
+
+### Next Steps
+- Study superposition and feature representations.
+- Review TransformerLens architecture.
+
