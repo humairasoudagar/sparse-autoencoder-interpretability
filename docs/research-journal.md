@@ -4,7 +4,7 @@ This journal documents my progress throughout this project.
 
 ---
 
-## Day 1 | 30 July 2026
+## Day 1 
 
 ### What I know
 
@@ -23,26 +23,51 @@ This journal documents my progress throughout this project.
 
 - Learn what representations are.
 - Read the first research paper.
+  
 
 ## Day 2
 
 ### Objectives
-- Study the fundamentals of autoencoders.
-- Review sparse autoencoder architecture.
-- Read foundational literature on sparse coding.
+- Understand the fundamentals of autoencoders.
+- Study Sparse Autoencoders and their role in mechanistic interpretability.
+- Build a foundation for the research project.
 
 ### Completed
-- Documented concepts:
+- Documented the following concepts:
   - Autoencoder
+  - Latent Representation
+  - Reconstruction Loss
   - Sparse Autoencoder
-  - Expansion Factor
   - Sparsity Constraint
-- Reviewed applications of autoencoders in denoising and anomaly detection.
-- Read:
-  - Towards Monosemanticity (Anthropic)
-  - Olshausen & Field (1996)
+  - Expansion Factor
+  - Representation Learning
+  - Feature
 
 ### Next Steps
-- Study superposition and feature representations.
-- Review TransformerLens architecture.
+- Begin reviewing the literature on Sparse Autoencoders.
+- Study the concepts of superposition and monosemanticity.
+
+## Day 3
+
+### Objectives
+- Begin the literature review.
+- Study the motivation behind Sparse Autoencoders.
+- Understand the research problem addressed by Anthropic.
+
+### Completed
+- Read the Abstract and Introduction of *Towards Monosemanticity: Decomposing Language Models with Dictionary Learning*.
+- Documented notes from the paper.
+- Identified the central research problem:
+  - Individual neurons are often polysemantic.
+  - Features provide a better unit of analysis than individual neurons.
+  - Sparse Autoencoders can learn more interpretable feature representations.
+- Recorded questions for further study regarding:
+  - Superposition
+  - Compressed sensing
+  - Sparse architectural approaches
+
+### Next Steps
+- Continue reading the paper.
+- Study the sections on feature decomposition and Sparse Autoencoder methodology.
+- Expand the concepts documentation as new ideas are understood.
 
