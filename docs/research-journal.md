@@ -71,3 +71,31 @@ This journal documents my progress throughout this project.
 - Study the sections on feature decomposition and Sparse Autoencoder methodology.
 - Expand the concepts documentation as new ideas are understood.
 
+## Day 4
+
+### Objectives
+
+- Complete the first research paper.
+- Understand how Sparse Autoencoders are used to decompose transformer activations.
+- Understand the evidence presented for more interpretable features.
+
+### Completed
+
+- Completed reading *Towards Monosemanticity: Decomposing Language Models with Dictionary Learning*.
+- Studied the problem of polysemanticity and superposition.
+- Understood features as an alternative unit of analysis to individual neurons.
+- Understood dictionary learning and overcomplete feature representations.
+- Studied the Sparse Autoencoder architecture and its reconstruction process.
+- Understood the roles of reconstruction loss and sparsity constraint.
+- Studied why sparse architectural approaches were insufficient for obtaining monosemantic features.
+- Studied examples of learned features including Arabic script, DNA, base64 and Hebrew.
+- Studied feature density, feature splitting and feature universality.
+- Studied feature steering and how learned features can be used to investigate model behaviour.
+- Reviewed the limitations and broader implications of the approach.
+
+### Next Steps
+
+- Begin the next research paper.
+- Continue studying biological mechanisms underlying sparse neural representations.
+- Start building a decision matrix for selecting a biologically inspired sparsity mechanism.
+
