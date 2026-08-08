@@ -347,102 +347,182 @@ The paper shows that some of these learned features correspond to understandable
 
 # Diagrams
 
-## 1. Problem Setup
+## 1. Full Transformer and SAE Flow
 
 ```mermaid
 flowchart TD
-    A[Transformer] --> B[Individual Neurons]
-    B --> C[Polysemanticity]
-    C --> D[Hard to Interpret]
-    D --> E[Need Better Units of Analysis]
-    E --> F[Features]
-```
-## 2. Superposition
+    A[The Pile<br>Tokens] --> B[Embedding]
+    B --> C[Hidden States<br>h0, h1, h2...]
 
-```mermaid
-flowchart LR
-    A[Fewer Neurons] --> B[More Features]
-    B --> C[Overlapping Representations]
-    C --> D[Superposition]
-    D --> E[Polysemantic Neurons]
+    C --> D[Attention Block]
+    D --> E[MLP Block<br>ReLU]
+
+    E --> F[MLP Activation Vector]
+
+    F --> G[SAE<br>Encoder]
+    G --> H[Sparse Features]
+    H --> I[SAE<br>Decoder]
+    I --> J[Reconstructed Activation]
+
+    E --> K[Rest of Transformer]
+    K --> L[Unembedding]
+    L --> M[Logits]
 ```
-## 3. SAE Decomposition
+
+## 2. Inside the Transformer
 
 ```mermaid
 flowchart TD
-    A[Transformer MLP Activation] --> B[SAE Encoder]
-    B --> C[Sparse Feature Activations]
-    C --> D[SAE Decoder]
-    D --> E[Reconstructed Activation]
+    A[Tokens] --> B[Embedding]
+    B --> C[Hidden States<br>h0, h1, h2...]
+
+    C --> D[Attention Block]
+    D --> E[MLP Block]
+
+    E --> F[MLP Activation Vector]
+
+    F --> G[Next Transformer Steps]
+    G --> H[Unembedding]
+    H --> I[Logits]
+```
+
+## 3. Inside the Sparse Autoencoder
+
+```mermaid
+flowchart TD
+    A[MLP Activation Vector] --> B[Encoder<br>Linear Layer]
+    B --> C[Expanded Feature Space]
+    C --> D[ReLU]
+    D --> E[Sparse Feature Activations]
+    E --> F[Decoder<br>Linear Layer]
+    F --> G[Reconstructed Activation]
 ```
 ## 4. Reconstruction and Sparsity
 
 ```mermaid
 flowchart TD
-    A[Original Activation] --> B[SAE]
-    B --> C[Sparse Features]
-    C --> D[Reconstructed Activation]
+    A[Original MLP Activation] --> B[Encoder]
+    B --> C[Expanded Feature Space]
+    C --> D[ReLU]
+    D --> E[Sparse Feature Activations]
 
-    A --> E[L2 Reconstruction Loss]
-    D --> E
+    E --> F[Decoder]
+    F --> G[Reconstructed Activation]
 
-    C --> F[L1 Sparsity Loss]
+    A --> H[L2 Reconstruction Loss]
+    G --> H
 
-    E --> G[Training Objective]
-    F --> G
+    E --> I[L1 Sparsity Penalty]
+
+    H --> J[Training Objective]
+    I --> J
 ```
-## 5. Overcomplete Representation
 
-```mermaid
-flowchart LR
-    A[512 Neuron MLP] --> B[SAE]
-    B --> C[512 Features]
-    B --> D[4096 Features]
-    B --> E[131072 Features]
-```
-## 6. Feature Splitting
+## 5. Superposition and the Need for SAE
 
 ```mermaid
 flowchart TD
-    A[Small SAE] --> B[Broad Feature]
+    A[Useful Features] --> B[More Features Than Neurons]
+    B --> C[Superposition]
+
+    C --> D[Multiple Features Stored<br>in Overlapping Directions]
+    D --> E[Individual Neurons Can Be<br>Polysemantic]
+
+    E --> F[Hard to Understand<br>Individual Neurons]
+    F --> G[Sparse Autoencoder]
+    G --> H[Learned Features]
+    H --> I[More Interpretable Representation]
+```
+## 6. Overcomplete Feature Space
+
+```mermaid
+flowchart LR
+    A[Original MLP<br>512 Neurons] --> B[SAE]
+    B --> C[Expanded Feature Space]
+    C --> D[512 Features]
+    C --> E[4,096 Features]
+    C --> F[131,072 Features]
+
+    F --> G[Only a Small Number<br>Are Active at Once]
+```
+## 7. Feature Splitting
+
+```mermaid
+flowchart TD
+    A[Smaller SAE] --> B[Broad Feature]
+
     B --> C[Larger SAE]
-    C --> D[More Specific Feature A]
-    C --> E[More Specific Feature B]
-    C --> F[More Specific Feature C]
+
+    C --> D[More Specific Feature 1]
+    C --> E[More Specific Feature 2]
+    C --> F[More Specific Feature 3]
 ```
-## 7. Feature Steering
+## 8. Feature Steering
+
+```mermaid
+flowchart TD
+    A[Learned Feature] --> B[Increase or Decrease<br>Feature Activation]
+    B --> C[Reconstructed Activation]
+    C --> D[Transformer]
+    D --> E[Changed Model Behaviour]
+```
+## 9. Feature Universality
 
 ```mermaid
 flowchart LR
-    A[Learned Feature] --> B[Increase Feature Activation]
-    B --> C[Transformer]
-    C --> D[Changed Behavior]
-```
-## 8. Feature Universality
+    A[Model A] --> B[SAE A]
+    B --> C[Learned Features]
 
-```mermaid
-flowchart LR
-    A[Model A] --> B[SAE A] --> C[Features A]
-    D[Model B] --> E[SAE B] --> F[Features B]
+    D[Model B] --> E[SAE B]
+    E --> F[Learned Features]
+
     C --> G[Similar Features]
     F --> G
 ```
-## 9. Overall Paper
+
+## 10. Feature Interactions and Circuits
 
 ```mermaid
 flowchart TD
-    A[Polysemantic Neurons] --> B[Superposition]
-    B --> C[Neurons Are Difficult to Interpret]
+    A[Feature 1] --> C[Feature Interaction]
+    B[Feature 2] --> C
 
-    C --> D[Sparse Autoencoder]
-    D --> E[Overcomplete Feature Space]
-    E --> F[Sparse Features]
-    F --> G[Interpretable Features]
+    C --> D[Feature 3]
+    C --> E[Feature 4]
 
-    G --> H[Feature Steering]
-    G --> I[Feature Splitting]
-    G --> J[Feature Universality]
-    G --> K[Feature Circuits]
+    D --> F[Model Behaviour]
+    E --> F
+```
+## 11. From Neurons to Features
+
+```mermaid
+flowchart TD
+    A[Transformer] --> B[MLP Neurons]
+
+    B --> C[Polysemantic Neurons]
+    C --> D[Superposition]
+
+    D --> E[Sparse Autoencoder]
+    E --> F[Expanded Feature Space]
+    F --> G[Sparse Features]
+
+    G --> H[More Interpretable Features]
+    H --> I[Study Feature Behaviour]
+```
+
+## 12. How the SAE Is Evaluated
+
+```mermaid
+flowchart TD
+    A[Trained SAE] --> B[Reconstruction Quality]
+    A --> C[Sparsity]
+    A --> D[Feature Interpretability]
+    A --> E[Feature Steering]
+
+    B --> F[Does the SAE<br>preserve information?]
+    C --> G[How many features<br>are active?]
+    D --> H[Can we understand<br>what a feature represents?]
+    E --> I[Does changing a feature<br>change model behaviour?]
 ```
 
 
