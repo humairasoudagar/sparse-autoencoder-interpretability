@@ -91,6 +91,88 @@ Representation learning is the process of automatically learning useful represen
 
 # Feature
 
-A feature is a pattern concept learned by a neural network.
+A feature is a pattern or concept learned by a neural network.
 
 Sparse Autoencoders attempt to separate features into individual latent units.
+
+---
+
+# Superposition
+
+Superposition occurs when a neural network represents more features than it has neurons by storing multiple features in overlapping directions.
+
+---
+
+# Polysemanticity
+
+Polysemanticity means that a neuron responds to multiple unrelated features or concepts.
+
+---
+
+# Dictionary
+
+A dictionary is a collection of learned features that can be used to represent the activations of a neural network.
+
+---
+
+# Dictionary Learning
+
+Dictionary learning represents an activation using a combination of learned features, where each feature has a value showing how strongly it contributes.
+
+---
+
+# Feature Coefficient
+
+A feature coefficient indicates how strongly a particular feature contributes to an activation.
+
+---
+
+# Overcomplete Representation
+
+An overcomplete representation has more features than the original number of neurons.
+
+---
+
+# Sparse Representation
+
+A sparse representation uses only a small number of active features to represent an activation.
+
+---
+
+# Monosemanticity
+
+Monosemanticity means that a feature mainly represents one interpretable concept rather than multiple unrelated concepts.
+
+---
+
+# Feature Density
+
+Feature density describes how frequently a feature activates across the dataset.
+
+---
+
+# Dead Feature
+
+A dead feature is a feature that rarely or never activates during training.
+
+---
+
+# Feature Splitting
+
+Feature splitting occurs when a feature representing a broad concept separates into multiple more specific features when the SAE has a larger number of features.
+
+---
+
+# Feature Universality
+
+Feature universality refers to similar features being found in separately trained models.
+
+---
+
+# Feature Steering
+
+Feature steering involves changing the activation of a feature to influence the model's behaviour.
+
+
+
+
