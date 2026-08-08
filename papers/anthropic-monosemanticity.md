@@ -374,7 +374,7 @@ flowchart TD
     B --> C[Sparse Feature Activations]
     C --> D[SAE Decoder]
     D --> E[Reconstructed Activation]
-
+```
 ## 4. Reconstruction and Sparsity
 
 ```mermaid
