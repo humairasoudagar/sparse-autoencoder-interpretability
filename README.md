@@ -1,122 +1,55 @@
-# Sparse Autoencoder Interpretability
+# Biologically Inspired Sparse Autoencoder
 
-> Exploring whether biologically inspired sparse coding can make language model representations easier to understand.
+## Investigating Whether Biologically Inspired Sparse Coding Can Make Language Model Representations More Interpretable
+
+Exploring whether biologically inspired sparse coding can make language model representations easier to understand.
+
+Language models have representations that are difficult to interpret. Sparse Autoencoders can turn those representations into sparse features. This project tests whether a biologically motivated way of encouraging sparsity can make those features easier to interpret than the usual L1 approach.
 
 ---
 
 ## Research Question
 
-**Can biologically inspired sparse coding make language models easier to interpret?**
+**When both Sparse Autoencoders reconstruct the original language-model activations equally well, do biologically motivated target-activity constraints produce features that are easier to interpret and more semantically coherent than standard L1 sparsity?**
 
 ---
 
-## Overview
+## How It Works
 
-Modern language models contain millions of internal features, yet understanding what those features represent remains an open challenge.
+A small open-weight language model is used to produce residual-stream activations.
 
-Sparse Autoencoders (SAEs) have emerged as one of the most promising tools for mechanistic interpretability by learning sparse representations of language model activations. However, most existing approaches are driven primarily by mathematical optimisation rather than principles observed in biological neural systems.
+These activations are given to two Sparse Autoencoders:
 
-This project investigates whether ideas from biological sparse coding can lead to representations that are easier for humans to interpret while preserving the usefulness of Sparse Autoencoders.
-
----
-
-## Why this project?
-
-I'm a Computer Science student interested in AI and neuroscience.
-
-Mechanistic interpretability is a rapidly developing area of AI research, but it's also a field I am learning from the ground up.
-
-This repository documents that journey. It serves as both a research notebook and a record of experiments as I investigate whether ideas from biological sparse coding can improve the interpretability of language models.
-
-My goal is not only to build a working system, but to understand every major concept along the way.
-
-## Tech Stack
-
-**Programming**
-- Python
-
-**Deep Learning**
-- PyTorch
-
-**Language Models**
-- GPT-2 Small *(planned)*
-
-**Interpretability**
-- Sparse Autoencoders
-- TransformerLens *(planned)*
-
-**Data Handling**
-- NumPy
-- Pandas
-
-**Visualisation**
-- Matplotlib
-- Plotly
-
-**Experiment Tracking**
-- Git
-- GitHub
-
----
-
-## Dataset
-
-*To be finalised after the literature review.*
-
-Potential datasets and activation sources:
-
-- OpenWebText
-- WikiText-103
-- The Pile (small subset)
-- Residual stream activations extracted from GPT-2 Small
-
----
-
-## Estimated Process
-
-1. Learn the fundamentals of representation learning.
-2. Understand Autoencoders.
-3. Build a simple Autoencoder from scratch.
-4. Implement a baseline Sparse Autoencoder.
-5. Study biological sparse coding.
-6. Design biologically inspired constraints.
-7. Train and evaluate both models.
-8. Compare interpretability and reconstruction quality.
-9. Document findings.
-
----
-
-## Learning Map
-
-- [ ] Neural Networks
-- [ ] Representation Learning
-- [ ] Autoencoders
-- [ ] Sparse Autoencoders
-- [ ] Transformers
-- [ ] GPT-2 Architecture
-- [ ] Mechanistic Interpretability
-- [ ] Biological Sparse Coding
-- [ ] Experimental Design
-- [ ] Model Evaluation
-
----
-
-## Repository Structure
-```
-.
-├── docs/
-├── papers/
-├── notebooks/
-├── src/
-├── experiments/
-├── results/
-├── figures/
-├── assets/
-└── README.md
+```text
+Language Model
+      ↓
+Residual-Stream Activations
+      ↓
+ ┌───────────────┐
+ │               │
+ ↓               ↓
+Standard SAE   Experimental SAE
+ │               │
+ └───────┬───────┘
+         ↓
+   Sparse Features
+         ↓
+  Feature Analysis
 ```
 
----
+The Standard SAE uses L1 regularization to encourage sparse activations.
 
-## References
+The Experimental SAE uses a biologically motivated constraint based on sparse population coding.
 
-The literature review and references will be added as the project progresses.
+The two approaches are compared while keeping their ability to reconstruct the original language-model activations approximately the same.
+
+## Repository Layout
+
+Biologically-Inspired-SAE/
+├── papers/       Paper notes
+├── docs/         Concepts and methodology
+├── src/          Implementation
+├── experiments/  Training and analysis
+├── results/      Experimental results
+└── figures/      Visualisations
+
