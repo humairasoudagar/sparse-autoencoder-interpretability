@@ -44,7 +44,7 @@ The Experimental SAE uses a biologically motivated constraint based on sparse po
 The two approaches are compared while keeping their ability to reconstruct the original language-model activations approximately the same.
 
 ## Repository Layout
-
+``` text
 Biologically-Inspired-SAE/
 ├── papers/       Paper notes
 ├── docs/         Concepts and methodology
@@ -52,4 +52,5 @@ Biologically-Inspired-SAE/
 ├── experiments/  Training and analysis
 ├── results/      Experimental results
 └── figures/      Visualisations
+```
 
